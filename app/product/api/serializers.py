@@ -6,7 +6,7 @@ from product.models import Product, Section
 class ProductSerializer(serializers.ModelSerializer):
     """Serializer for product object"""
     section = serializers.StringRelatedField()
-    
+
     class Meta:
         model = Product
         fields = ('title', 'description', 'slug', 'active', 'section')

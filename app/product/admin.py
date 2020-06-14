@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['section', 'active']
     readonly_fields = ['timestamp', 'update']
     prepopulated_fields = {'slug': ('title',)}
-    
+
     class Meta:
         model = models.Product
 

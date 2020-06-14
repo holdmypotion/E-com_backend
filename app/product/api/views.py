@@ -15,4 +15,3 @@ class SectionViewSet(viewsets.ReadOnlyModelViewSet):
     """ViewSet to retrieve and list Sections"""
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
-     
