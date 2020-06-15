@@ -14,7 +14,7 @@ class SectionSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     """Serializer for product object"""
-    section = SectionSerializer()
+    section = serializers.StringRelatedField()
 
     class Meta:
         model = Product
