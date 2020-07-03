@@ -8,6 +8,7 @@ from rest_framework import status
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
+ME_URL = reverse('user:me')
 
 
 def create_user(**params):
@@ -63,14 +64,25 @@ class PublicUserApiTest(TestCase):
         ).exists()
         self.assertFalse(user_exists)
 
-    def test_create_token_for_user(self):
-        """Test that a token is created for the user"""
-        payload = {
-            'email': 'test@gmail.com',
-            'password': 'testpass'
-        }
-        create_user(**payload)
 
-        res = self.client.post(TOKEN_URL, payload)
-        self.assertIn('access', res.data)
+class PrivateUserApiTests(TestCase):
+    """Test API requests that require authentication"""
+
+    def setUp(self):
+        self.user = create_user(
+            email='test@gmail.com',
+            password='testpass',
+            name='fname',
+        )
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.user)
+
+    def test_retrieve_profile_success(self):
+        """Test retrieving profile for logged in user"""
+        res = self.client.get(ME_URL)
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, {
+            'name': self.user.name,
+            'email': self.user.email,
+        })
