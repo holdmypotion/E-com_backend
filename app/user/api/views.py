@@ -1,7 +1,6 @@
 from rest_framework import generics, permissions
 # from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authentication import SessionAuthentication,\
-                                            TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from user.api.serializers import UserSerializer
 
@@ -14,7 +13,7 @@ class CreateUserView(generics.CreateAPIView):
 class ManageUserView(generics.RetrieveUpdateDestroyAPIView):
     """Manages the authenticated user"""
     serializer_class = UserSerializer
-    authentication_classes = (SessionAuthentication, TokenAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
 
     def get_object(self):

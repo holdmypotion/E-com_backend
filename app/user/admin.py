@@ -16,12 +16,12 @@ class UserAdmin(BaseUserAdmin):
         of user attributes accordingly.
     """
     ordering = ['id']
-    list_display = ['email', 'name', 'addresses']
+    list_display = ['email', 'name',]
     # inlines = [
     #     AddressInline,
     # ]
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'addresses')}),
+        (None, {'fields': ('email', 'password',)}),
         (_('Personal Info'), {'fields': ('name',)}),
         (
             _('Permissions'),
