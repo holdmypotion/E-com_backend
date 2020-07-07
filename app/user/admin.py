@@ -3,6 +3,11 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
 
 from user import models
+# from address.models import Address
+
+
+# class AddressInline(admin.StackedInline):
+#     model = Address
 
 
 class UserAdmin(BaseUserAdmin):
@@ -11,9 +16,12 @@ class UserAdmin(BaseUserAdmin):
         of user attributes accordingly.
     """
     ordering = ['id']
-    list_display = ['email', 'name']
+    list_display = ['email', 'name', 'addresses']
+    # inlines = [
+    #     AddressInline,
+    # ]
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'addresses')}),
         (_('Personal Info'), {'fields': ('name',)}),
         (
             _('Permissions'),

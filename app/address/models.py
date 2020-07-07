@@ -1,13 +1,15 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
 
 
 STATES = [
+    ('Nul', '---------'),
     ('AP', 'Andhra Pradesh'),
     ('AR', 'Arunachal Pradesh'),
     ('AS', 'Assam'),
     ('BR', 'Bihar'),
-    ('CT', 'Chhattisgarh'),
+    ('CT', 'Chattisgarh'),
     ('GA', 'Goa'),
     ('GJ', 'Gujarat'),
     ('HR', 'Haryana'),
