@@ -1,25 +1,22 @@
 from django.db import models
-# from django.conf import settings
+from django.conf import settings
 
 from product.models import Product
 from address.models import Address
 
 
 class Order(models.Model):
-    order_id = models.CharField(max_length=120, blank=True)
-    # user = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL,
-    #     on_delete=models.CASCADE,
-    #     related_name='orders',
-    #     null=True
-    # )
+    # order_id = models.CharField(max_length=120, blank=True)
+    order_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='orders',
+        null=True
+    )
     product = models.ForeignKey(
         Product,
         on_delete=models.PROTECT,
-    )
-    shipping_address = models.ForeignKey(
-        Address,
-        on_delete=models.PROTECT
     )
     quantity = models.CharField(max_length=500)
     shipping_total = models.DecimalField(
