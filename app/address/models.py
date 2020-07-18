@@ -47,6 +47,13 @@ STATES = [
 
 class Address(models.Model):
     id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='addresses',
+        blank=True,
+        null=True,
+    )
     address1 = models.CharField('Address line 1', max_length=1024,)
     address2 = models.CharField('Address line 2', max_length=1024, blank=True)
     zip_code = models.CharField('ZIP / Postal code', max_length=12)

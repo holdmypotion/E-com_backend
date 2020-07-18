@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
 
-from address.models import Address
-
 
 class UserManager(BaseUserManager):
     """Manager class for the User model"""
@@ -32,12 +30,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that uses email insteal of username"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    address = models.ForeignKey(
-        Address,
-        on_delete=models.PROTECT,
-        blank=True,
-        null=True,
-    )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
