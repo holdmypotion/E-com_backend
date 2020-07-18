@@ -108,7 +108,7 @@ class PrivateAddressApiTest(TestCase):
     def test_view_address_detail(self):
         """Test viewing a address detail"""
         address = sample_address(user=self.user)
- 
+
         url = address_detail_url(address.id)
         res = self.client.get(url)
 
@@ -135,7 +135,7 @@ class PrivateAddressApiTest(TestCase):
     def test_partial_update_address(self):
         """Test partially updating an address with patch"""
         address = sample_address(user=self.user)
- 
+
         payload = {
             'address1': 'HNO. 5875',
             'address2': 'Backer St.',
