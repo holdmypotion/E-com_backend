@@ -23,7 +23,6 @@ def sample_section(**params):
 def sample_product(**params):
     """Sample Product"""
     section = sample_section()
-    itr = itr + 1
     defaults = {
         'title': 'SampleProduct',
         'slug': 'sampleproduct',
