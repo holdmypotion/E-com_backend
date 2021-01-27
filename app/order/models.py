@@ -35,13 +35,12 @@ class Order(models.Model):
         max_digits=100,
         decimal_places=2
     )
-    active = models.BooleanField(default=True)
+    done = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.order_id
-    
 
     class Meta:
         ordering = ['-timestamp', '-updated']
