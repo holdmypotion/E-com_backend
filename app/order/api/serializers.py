@@ -9,11 +9,11 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = (
-            'order_id',
+            'id',
             'user',
             'product',
             'quantity',
             'shipping_total',
             'total',
         )
-        read_only_fields = ('order_id',)
+        read_only_fields = ('id',)

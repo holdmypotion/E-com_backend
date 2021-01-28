@@ -8,12 +8,11 @@ from order.utils import unique_order_id
 
 
 class Order(models.Model):
-    order_id = models.SlugField(
-        max_length=120,
-        unique=True,
-        primary_key=True
-    )
-    # order_id = models.AutoField(primary_key=True)
+    # order_id = models.SlugField(
+    #     max_length=120,
+    #     unique=True,
+    #     primary_key=True
+    # )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -26,28 +25,23 @@ class Order(models.Model):
     )
     quantity = models.CharField(max_length=500)
     shipping_total = models.DecimalField(
-        default=0.00,
         max_digits=100,
         decimal_places=2
     )
     total = models.DecimalField(
-        default=0.00,
         max_digits=100,
         decimal_places=2
     )
-    done = models.BooleanField(default=True)
+    done = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.order_id
 
     class Meta:
         ordering = ['-timestamp', '-updated']
 
     
-def pre_save_create_order_id(sender, instance, *args, **kwargs):
-    if not instance.order_id:
-        instance.order_id = unique_order_id(instance)
+# def pre_save_create_order_id(sender, instance, *args, **kwargs):
+#     if not instance.order_id:
+#         instance.order_id = unique_order_id(instance)
         
-pre_save.connect(pre_save_create_order_id, sender=Order)
+# pre_save.connect(pre_save_create_order_id, sender=Order)
